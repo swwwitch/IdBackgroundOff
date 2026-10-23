@@ -1,0 +1,37 @@
+IdBackgroundOff — Turn off InDesign background export
+
+How it works
+Placing an empty file named DisableAsyncExports.txt in the Contents/MacOS folder inside InDesign makes exports such as PDF run in the foreground instead of as background tasks. This app only adds or removes that file. The file is empty, and InDesign preferences and documents are not touched.
+
+Basic use
+The app lists InDesign versions (2025, 2026 and so on) found in /Applications and ~/Applications. Turn Off adds the file and Restore removes it. Turn Off All handles every version that is still on. The magnifier button shows the location in Finder.
+Use Add InDesign… (⌘O) for a copy in another location. InDesign Server is not supported.
+Changes take effect the next time InDesign starts. Quit and reopen InDesign if it is running.
+
+Application bar
+Switch to Application Bar at the top to list the workspaces of each version in ~/Library/Preferences/Adobe InDesign. Hide changes <app-container-control-bar … is-closed="false"> in the workspace XML to "true" (Show changes it back). Both the saved workspace (name.xml) and its current state (name_CurrentWorkspace.xml) are changed.
+The list shows your saved workspaces and InDesign presets. Leftover current-state files of deleted workspaces appear only with “Also show unused files”; Dropbox conflicted copies are never listed.
+InDesign writes its workspaces back when it quits, so changes are not allowed while InDesign is running. Quit it first. This has no effect while the Application Frame is used. No administrator password is needed.
+Reference (Japanese): https://note.com/dtp_tranist/n/n08559ccb6a3b
+
+Administrator password
+The inside of the InDesign app is protected, so macOS asks for an administrator password when you make a change. macOS handles the password; this app never stores it. If you cancel, nothing is changed. Accessibility, Full Disk Access and similar permissions are not required.
+
+After updating InDesign
+An update or reinstall can remove the file and turn background export back on. Each autumn's major version installs into a new folder (for example Adobe InDesign 2027), so turn it off again for the new version. The list is re-read when you return to the app, or with ⌘R.
+
+Quitting and shortcuts
+The app does not stay running. Closing the window (⌘W) or ⌘Q quits it. ⌘R reloads, ⌘O adds InDesign, ⌘0 opens the main window (Open Main Window), ⇧⌘Z redoes, and ⌘? opens this help. There is no settings window.
+
+Menu bar
+Turn on Add to Menu Bar in Menu Bar Settings… in the app menu to show an icon in the menu bar (off by default). Its menu offers Open Main Window, Help (IdBackgroundOff Help / Open the note Article) and Quit IdBackgroundOff. While the icon is shown, closing the window does not quit the app; reopen it from the icon or with ⌘0.
+
+Troubleshooting and manual restore
+Status unavailable means a folder or link with the same name exists. The app leaves it alone; check it in Finder.
+To restore without the app, Control-click InDesign, choose Show Package Contents, open Contents → MacOS and move DisableAsyncExports.txt to the Trash.
+If only some changes failed, check the counts and each row, then try again.
+
+Privacy and updates
+No network access. Only the paths of apps chosen with Add InDesign…, the window position and the menu bar choice are saved (UserDefaults). Check for Updates… and Automatically Check for Updates in the app menu use the shared updater, but this build is ad-hoc signed for local use with no update feed, signing key or notarization, so it reports that updates are not configured and makes no network access.
+Reference (Japanese): https://note.com/dtp_tranist/n/nf94bf905c478
+Support: see the bundled README.md (Contents/Resources/README.md inside the app).
